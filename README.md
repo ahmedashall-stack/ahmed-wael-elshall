@@ -111,7 +111,8 @@ https://www.canva.com/design/DAHLPh8Kwdg/GHQ1xbQglHmfiQOfX8tsMQ/view?utm_content
 
 
 ## paper
-https://drive.google.com/file/d/1I8peHdf4bUo_30cbdz1A4VZuwELpm1nn/view?usp=drivesdk
+
+[Ahmed_Wael_Heart_Disease_Risk_Prediction_Report (1).docx](https://github.com/user-attachments/files/28439606/Ahmed_Wael_Heart_Disease_Risk_Prediction_Report.1.docx)
 
 ## Author
 
