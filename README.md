@@ -107,7 +107,7 @@ python app.py
 - Add explanations for predictions using techniques like SHAP values
 
 ## Video presentation 
-https://www.canva.com/design/DAGpm4RGlEo/u7eNfXZK6vzN173l66mW6g/edit?utm_content=DAGpm4RGlEo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+https://www.canva.com/design/DAHLPh8Kwdg/GHQ1xbQglHmfiQOfX8tsMQ/view?utm_content=DAHLPh8Kwdg&utm_campaign=designshare&utm_medium=link&utm_source=recording_view
 
 
 ## paper
