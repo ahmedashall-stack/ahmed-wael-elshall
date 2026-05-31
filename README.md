@@ -1,96 +1,118 @@
-# 💼 Machine_Project: Salary Predictor Web App
+# Heart Disease Risk Prediction
 
-A Flask web application that predicts whether a job has a **high salary** based on key job-related features.
+## Project Overview
 
----
+This project performs end-to-end analysis on a heart disease risk dataset, including data cleaning, exploratory analysis, feature engineering, model development, and deployment preparation. The goal is to build a machine learning model that can predict the risk of heart disease based on various health indicators and demographic information.
 
-## 🚀 Overview
+## Dataset
 
-This project leverages machine learning techniques and a user-friendly web interface to classify job postings as offering either a **high salary** or **not high salary**. It integrates end-to-end functionality from data preprocessing to model deployment using Flask.
+The dataset (`heart_disease_risk_dataset_earlymed.csv`) contains various health indicators and demographic information, with a binary target variable indicating heart disease risk. The dataset initially contained 70,000 records with 19 features, which was reduced to 63,755 records after removing duplicates.
 
----
+### Features
 
-## 🔍 Key Features
+- **Symptoms**: Chest_Pain, Shortness_of_Breath, Fatigue, Palpitations, Dizziness, Swelling, Pain_Arms_Jaw_Back, Cold_Sweats_Nausea
+- **Medical Conditions**: High_BP, High_Cholesterol, Diabetes
+- **Lifestyle Factors**: Smoking, Obesity, Sedentary_Lifestyle, Chronic_Stress
+- **Demographics**: Gender, Age, Family_History
+- **Target Variable**: Heart_Risk (0: No risk, 1: Risk)
 
-- ✅ **Interactive Web UI** using Flask and HTML.
-- ✅ **Real-time Prediction** based on form inputs.
-- ✅ **Machine Learning Backend** (Logistic Regression, Random Forest, SVC).
-- ✅ **Feature Encoding** and **Selection** using `pd.get_dummies()` and `SelectKBest`.
-- ✅ **Model Serialization** using `joblib`.
+## Project Structure
 
----
-
-## 📥 Input Fields (via Web Form)
-
-| Field         | Description                            | Example       |
-|---------------|----------------------------------------|---------------|
-| `Rating`      | Company rating (float)                 | 4.2           |
-| `Founded`     | Year the company was founded (integer) | 2010          |
-| `Seniority`   | Job seniority level                    | Junior, Senior|
-| `State`       | Job location (US state)                | CA, TX        |
-| `avg_salary`  | Average salary (numeric)               | 120000        |
-
----
-
-## 🧠 Machine Learning Pipeline
-
-1. **Data Cleaning** — Handled missing values and outliers using Pandas.
-2. **Feature Encoding** — Used `pd.get_dummies()` for categorical variables.
-3. **Feature Selection** — Employed `SelectKBest` for dimensionality reduction.
-4. **Model Training** — Trained three models:
-   - Logistic Regression
-   - Random Forest (best performer)
-   - Support Vector Classifier (SVC)
-5. **Model Saving** — Used `joblib` to store the trained model and selected features.
-
----
-
-## 📁 Project Structure
+The project is organized as follows:
 
 ```
-SalaryApp/
-│
-├── app.py                 # Flask app server
-├── model.pkl              # Trained ML model
-├── features.pkl           # List of feature columns after encoding
-├── templates/
-│   └── index.html         # User input form
-├── static/                # (Optional) CSS or JS files
-└── README.md              # Documentation (this file)
+heart_disease_risk_prediction/
+├── heart_disease_analysis.ipynb     # Jupyter notebook with complete analysis
+├── cleaned_heart_disease_data.csv        # Cleaned dataset
+├── heart_disease_risk_dataset_earlymed.csv      # dataset
+├── best_heart_risk_model.pkl        # Saved best model
+├── selected_features.pkl            # List of selected features for the model
+├── app.py                           # Flask application for model deployment
+├── README.md                        # Project documentation
+└── templates/                       # HTML templates for the Flask app
+    └── index.html                   # Home page template
 ```
 
----
+## Methodology
 
-## 📈 Model Evaluation
+### 1. Data Cleaning and Preprocessing
 
-| Model              | Accuracy |
-|-------------------|----------|
-| Logistic Regression | ~82%    |
-| Random Forest       | ~89% ✅ (Best) |
-| SVC                 | ~84%    |
+- Removed duplicate records (6,245 duplicates found)
+- Checked for missing values (none found)
+- Verified data consistency and format
+- Examined potential outliers
 
-The **Random Forest Classifier** gave the best performance and was used in deployment.
+### 2. Exploratory Data Analysis
 
-## 🌐 Project voiceover
-https://drive.google.com/drive/folders/1vorFu0YqM2Tky73aAebQHvEt2m4d8Yfk?usp=sharing
----
+- Performed univariate analysis on key variables
+- Conducted bivariate analysis to understand relationships between variables
+- Created visualizations including histograms, boxplots, and correlation matrices
+- Identified patterns and relationships in the data
 
-## 🌐 How to Run Locally
+### 3. Feature Engineering and Selection
 
-```bash
-git clone https://github.com/Machine_Project.git
-cd Machine_Project
-pip install -r requirements.txt
+- Created age category feature (Young, Middle_Aged, Senior)
+- Used correlation analysis to identify relevant features
+- Applied Recursive Feature Elimination (RFE) for feature selection
+- Combined highly correlated features and RFE selected features
+
+### 4. Model Development and Evaluation
+
+- Implemented and compared three machine learning algorithms:
+  - Logistic Regression
+  - Random Forest
+  - Gradient Boosting
+- Performed hyperparameter tuning using GridSearchCV
+- Evaluated models using accuracy, precision, recall, and F1-score
+- Selected the best performing model (Gradient Boosting)
+
+### 5. Deployment Preparation
+
+- Exported the cleaned dataset
+- Saved the best model and selected features
+- Created a Flask web application for model deployment
+
+## Results
+
+The Gradient Boosting model achieved the best performance with:
+- Accuracy: 0.9924
+- Precision: 0.9908
+- Recall: 0.9938
+- F1-Score: 0.9923
+
+## Deployment
+
+The model is deployed as a Flask web application that allows users to input patient information and receive a heart disease risk prediction.
+
+### Running the Application
+
+1. Install the required dependencies:
+```
+pip install flask pandas numpy scikit-learn joblib
+```
+
+2. Run the Flask application:
+```
 python app.py
 ```
 
-Then open your browser and go to: [http://127.0.0.1:5000](http://127.0.0.1:5000)
+3. Access the application in a web browser at `http://localhost:5000`
 
----
+## Future Work
 
-## ✅ Future Improvements
+- Collect more diverse data to improve model generalization
+- Implement more advanced feature engineering techniques
+- Explore deep learning approaches
+- Enhance the web interface with more detailed risk assessments
+- Add explanations for predictions using techniques like SHAP values
 
-- Add model explanation using SHAP or LIME.
-- Extend dataset to improve generalizability.
-- Add charts and logs to show model confidence.
-- Deploy online using platforms like Heroku or Render.
+## Video presentation 
+https://www.canva.com/design/DAGpm4RGlEo/u7eNfXZK6vzN173l66mW6g/edit?utm_content=DAGpm4RGlEo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+
+## paper
+https://drive.google.com/file/d/1I8peHdf4bUo_30cbdz1A4VZuwELpm1nn/view?usp=drivesdk
+
+## Author
+
+This project was developed by ahmed elshall
